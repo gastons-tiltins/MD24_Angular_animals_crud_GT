@@ -15,27 +15,14 @@ export class AppComponent {
   constructor(private animalsService: AnimalsService) {}
 
   ngOnInit() {
-    const data = this.animalsService.getData().subscribe((response) => {
+    this.animalsService.getData().subscribe((response) => {
       console.log(response);
       this.animalsData = response;
     });
   }
 
-  // animalsData: AnimalsData[] = [
-  //   {
-  //     id: 1,
-  //     name: 'name1',
-  //     category: 'category1',
-  //   },
-  //   {
-  //     id: 2,
-  //     name: 'name2',
-  //     category: 'category1',
-  //   },
-  //   {
-  //     id: 3,
-  //     name: 'name3',
-  //     category: 'category2',
-  //   },
-  // ];
+  deleteData(id: number) {
+    this.animalsService.deleteData(id).subscribe((err) => console.log(err));
+    console.log(id);
+  }
 }

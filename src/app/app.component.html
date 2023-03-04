@@ -1,5 +1,8 @@
 <div class="container">
   <app-toggle-animals [data]="animalsData"></app-toggle-animals>
   <app-add-animals></app-add-animals>
-  <app-list-animals [data]="animalsData"></app-list-animals>
+  <app-list-animals
+    [data]="animalsData"
+    (id)="deleteData($any($event))"
+  ></app-list-animals>
 </div>

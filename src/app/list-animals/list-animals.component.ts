@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { AnimalsData } from '../app-types';
 
 @Component({
@@ -8,4 +8,9 @@ import { AnimalsData } from '../app-types';
 })
 export class ListAnimalsComponent {
   @Input() data: AnimalsData[] = [];
+  @Output() id = new EventEmitter<number>();
+
+  deleteData(id: number) {
+    this.id.emit(id);
+  }
 }
