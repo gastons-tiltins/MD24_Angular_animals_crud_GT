@@ -1,0 +1,14 @@
+@import "node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
+  // max-width: 600px;
+  width: 35%;
+  min-width: 350px;
+  background-color: #cfe5a6;
+  margin: 20px auto;
+  border: 1px solid lightgray;
+}

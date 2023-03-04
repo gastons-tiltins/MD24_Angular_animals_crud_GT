@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="input-container">
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+      <div class="form-group display--tabble">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Animal new animal..."
+          required
+        />
+      </div>
+      <div class="display--tabble">
+        <select
+          class="form-select"
+          aria-label="Default select example"
+          required
+        >
+          <option value="cat">Cat</option>
+          <option value="dog">Dog</option>
+        </select>
+      </div>
+      <div class="display--tabble">
+        <button class="btn btn-primary adjust-button-position">Add</button>
+      </div>
+    </form>
+  </div>
+</div>

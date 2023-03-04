@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.input-container {
+  display: table;
+  // background-color: skyblue;
+  // gap: 10px;
+}
+
+.display--tabble {
+  display: table-cell;
+  padding: 5px;
+}
+
+.adjust-button-position {
+  margin-bottom: 5px;
+}

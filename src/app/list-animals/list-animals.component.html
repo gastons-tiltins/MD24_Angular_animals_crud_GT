@@ -1,0 +1,10 @@
+<!-- <div>{{ data | json }}</div> -->
+<div class="animal-list_box">
+  <div class="animal-list" *ngFor="let field of data">
+    <div>{{ field.category }}</div>
+    <div>{{ field.name }}</div>
+    <div class="align--right">
+      <button class="btn btn-outline-danger">Delete</button>
+    </div>
+  </div>
+</div>
