@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Component, EventEmitter, Output } from '@angular/core';
+
+export interface Animal {
+  name: string;
+  category: 'cat' | 'dog';
+}
 
 @Component({
   selector: 'app-add-animals',
@@ -7,13 +11,14 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./add-animals.component.scss'],
 })
 export class AddAnimalsComponent {
-  profileForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-  });
+  @Output() addAnimal = new EventEmitter<Animal>();
+
+  animalData: Animal = {
+    name: '',
+    category: 'cat',
+  };
 
   onSubmit() {
-    // TODO: Use EventEmitter with form value
-    console.warn(this.profileForm.value);
+    this.addAnimal.emit(this.animalData);
   }
 }

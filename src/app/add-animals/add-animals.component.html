@@ -1,17 +1,25 @@
 <div class="container">
   <div class="input-container">
-    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <form #animalForm="ngForm" (ngSubmit)="onSubmit(); animalForm.reset()">
       <div class="form-group display--tabble">
         <input
           type="text"
           class="form-control"
           placeholder="Animal new animal..."
+          [(ngModel)]="animalData.name"
+          name="name"
+          id="name"
           required
+          minlength="2"
+          maxlength="20"
         />
       </div>
       <div class="display--tabble">
         <select
           class="form-select"
+          [(ngModel)]="animalData.category"
+          id="category"
+          name="category"
           aria-label="Default select example"
           required
         >
@@ -20,7 +28,13 @@
         </select>
       </div>
       <div class="display--tabble">
-        <button class="btn btn-primary adjust-button-position">Add</button>
+        <button
+          [disabled]="!animalForm.form.valid"
+          type="submit"
+          class="btn btn-primary adjust-button-position"
+        >
+          Add
+        </button>
       </div>
     </form>
   </div>

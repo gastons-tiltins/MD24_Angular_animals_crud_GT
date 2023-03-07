@@ -1,6 +1,8 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, Input } from '@angular/core';
 import { AnimalsData } from './app-types';
 import { AnimalsService } from './services/animals.service';
+import { Animal } from './add-animals/add-animals.component';
 
 @Component({
   selector: 'app-root',
@@ -10,19 +12,56 @@ import { AnimalsService } from './services/animals.service';
 export class AppComponent {
   title = 'Angular Animals App';
 
-  animalsData: any = [];
+  animalsData: AnimalsData[] = [];
+  showOnlyCats = false;
 
-  constructor(private animalsService: AnimalsService) {}
+  constructor(
+    private animalsService: AnimalsService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit() {
-    this.animalsService.getData().subscribe((response) => {
-      console.log(response);
+    this.activatedRoute.queryParams.subscribe((params) => {
+      const isCatsOnly = params['catsOnly'] === 'true';
+
+      this.getAllAnimals(isCatsOnly);
+      this.showOnlyCats = isCatsOnly;
+    });
+  }
+
+  getAllAnimals(catsOnly: boolean) {
+    this.animalsService.getAnimals(catsOnly).subscribe((response) => {
       this.animalsData = response;
     });
   }
 
-  deleteData(id: number) {
-    this.animalsService.deleteData(id).subscribe((err) => console.log(err));
-    console.log(id);
+  deleteAnimalRequest(_id: string) {
+    this.animalsService.deleteAnimal(_id).subscribe(() => {
+      this.animalsData = this.animalsData.filter(
+        (animal: AnimalsData) => animal._id !== _id
+      );
+    });
+  }
+
+  addAnimalRequest(animal: Animal) {
+    this.animalsService.createAnimal(animal).subscribe({
+      next: (response) => {
+        this.animalsData.push(response);
+      },
+      error: (e) => console.error(e),
+    });
+  }
+
+  catFilterToggle() {
+    this.showOnlyCats = !this.showOnlyCats;
+    const queryParams = { catsOnly: String(this.showOnlyCats) };
+    this.router.navigate([], {
+      relativeTo: this.activatedRoute,
+      queryParams: queryParams,
+      queryParamsHandling: 'merge',
+    });
+
+    this.getAllAnimals(this.showOnlyCats);
   }
 }

@@ -7,10 +7,10 @@ import { AnimalsData } from '../app-types';
   styleUrls: ['./list-animals.component.scss'],
 })
 export class ListAnimalsComponent {
-  @Input() data: AnimalsData[] = [];
-  @Output() id = new EventEmitter<number>();
+  @Input() animals: AnimalsData[] = [];
+  @Output() id = new EventEmitter<string>();
 
-  deleteData(id: number) {
+  deleteData(id: string) {
     this.id.emit(id);
   }
 }

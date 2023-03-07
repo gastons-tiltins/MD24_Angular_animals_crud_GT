@@ -1,6 +1,17 @@
-# Angular API CRUD with category toggle feature
+# Angular CRUD App with toggle
 
-Not completed:
-1. http.get implemented
-2. delete implemented
-3. add and toggle features are currently missing
+Preview:
+
+![preview](./preview.png)
+
+Instructions:
+
+```
+npm i
+```
+
+```
+npm run dev
+```
+
+Backend repository: https://github.com/gastons-tiltins/MD24.2_express_backend

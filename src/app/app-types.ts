@@ -1,5 +1,9 @@
 export interface AnimalsData {
-  id: number;
+  _id: string;
   name: string;
   category: string;
+}
+
+export class Animal {
+  constructor(public name: string, public category: string) {}
 }

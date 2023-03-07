@@ -1,11 +1,12 @@
 <!-- <div>{{ data | json }}</div> -->
+
 <div class="animal-list_box">
-  <div class="animal-list" *ngFor="let field of data">
-    <div>{{ field.category }}</div>
-    <div>{{ field.name }}</div>
+  <div class="animal-list" *ngFor="let animal of animals">
+    <div>{{ animal.category }}</div>
+    <div>{{ animal.name }}</div>
     <!-- <div>{{ field.id }}</div> -->
     <div class="align--right">
-      <button (click)="deleteData(field.id)" class="btn btn-outline-danger">
+      <button (click)="deleteData(animal._id)" class="btn btn-outline-danger">
         Delete
       </button>
     </div>
